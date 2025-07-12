@@ -30,44 +30,44 @@ A modern, AI-assisted web app that helps users track and categorize their spendi
 
 ## 🧱 Architecture Diagram
 
-+------------------------------+
-|      React Web App (UI)      |
-| (Hosted on Firebase Hosting) |
-+--------------+---------------+
-               |
-               ▼
-     +----------------------+
-     |   Firebase Auth      |  ← Login / Sign-up (Email, Google, etc.)
-     +----------------------+
-               |
-               ▼
-     +----------------------+
-     |   Upload Receipt     |  ← User uploads image or PDF
-     +----------------------+
-               |
-               ▼
-     +--------------------------+
-     |  Firebase Storage        |  ← Stores uploaded files
-     +--------------------------+
-               |
-               ▼ (Trigger)
-     +----------------------------+
-     |  Cloud Function (Backend) |  ← Auto-triggered after upload
-     |  - Uses Vision API (OCR)  |
-     |  - Parses & categorizes   |
-     +----------------------------+
-               |
-               ▼
-     +--------------------------+
-     |   Firestore Database     |  ← Saves extracted expense data
-     +--------------------------+
-               |
-               ▼
-     +----------------------------+
-     |  React Dashboard UI       |
-     |  - View expenses          |
-     |  - Charts & summaries     |
-     +----------------------------+
+   +------------------------------+
+            |      React Web App (UI)      |
+            | (Hosted on Firebase Hosting) |
+            +--------------+---------------+
+                           |
+                           ▼
+               +----------------------+
+               |   Firebase Auth      | ← Login / Sign-up (Email, Google, etc.)
+               +----------------------+
+                           |
+                           ▼
+               +----------------------+
+               |   Upload Receipt     | ← User uploads image or PDF
+               +----------------------+
+                           |
+                           ▼
+               +--------------------------+
+               |    Firebase Storage      | ← Stores uploaded files
+               +--------------------------+
+                           |
+                           ▼ (Trigger)
+           +---------------------------------------+
+           |     Cloud Function (Backend)          | ← Auto-triggered after upload  
+           |   - Uses Vision API (OCR)             |
+           |   - Parses & categorizes receipt data |
+           +---------------------------------------+
+                           |
+                           ▼
+               +--------------------------+
+               |   Firestore Database     | ← Stores structured expense data
+               +--------------------------+
+                           |
+                           ▼
+            +-----------------------------+
+            |   React Dashboard UI        |
+            |   - View expenses           |
+            |   - Charts & summaries      |
+            +-----------------------------+
 
 
 ---
