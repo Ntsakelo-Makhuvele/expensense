@@ -14,12 +14,14 @@ export const AuthProvider = ({children}:any) => {
 
    useEffect(() => {
       const unsub = onAuthStateChanged(auth, (firebaseUser) => {
+        console.log("Auth listener starting...");
+        console.log("onAuthStateChanged triggered:", firebaseUser);
         setUser(firebaseUser);
         setLoading(false);
       })
 
       return () => unsub();
-   })
+   },[])
  
    return (
     <AuthContext.Provider value={{user,loading}}>

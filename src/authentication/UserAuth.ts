@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export type User = {
     email: string,
-    username?: string,
     password: string,
 }
 
@@ -22,25 +21,3 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
-export const signUpUser = async(userData:User) => {
-   const [user,setUser] = useState<any>();
-   const [error,setError] = useState<any>();
-   createUserWithEmailAndPassword(auth, userData.email,userData.password).then((userCredentials) => {
-    setUser(userCredentials.user);
-   }).catch(error => {
-      setError(error);
-   })
-
-   return [user,error];
-} 
-
-export const signInUser = (userData:User) => {
-   const [user,setUser] = useState<any>();
-   const [error,setError] = useState<any>();
-    signInWithEmailAndPassword(auth,userData.email,userData.password).then((userCredentials) => {
-        setUser(userCredentials.user);
-    }).catch(error => {
-        setError(error);
-    })
-    return [user,error]
-}
